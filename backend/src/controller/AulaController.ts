@@ -119,4 +119,27 @@ export class AulaController{
 
         return response.status(200).json({message: "Aulas encontradas", aulas });
     }
+
+    router(){
+        const router = require('express').Router();
+
+        router.get("/:codigoAula", (req: Request, res: Response) => {
+            this.findAula(req, res, () => {});
+        });
+        router.post("/", (req: Request, res: Response) => {
+            this.save(req, res, () => {});
+        });
+        router.put("/", (req: Request, res: Response) => {
+            this.update(req, res, () => {});
+        });
+        router.delete("/", (req: Request, res: Response) => {
+            this.delete(req, res, () => {});
+        });
+        router.get("/professor/:codigoProfessor", (req: Request, res: Response) => {
+            this.findAulasByProfessor(req, res, () => {});
+        });
+
+        return router;
+    }
+
 }

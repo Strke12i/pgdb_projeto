@@ -73,4 +73,21 @@ export class ProfessorController{
         return response.status(200).json({message: "Professor deletado"});
     }
 
+    router(){
+        const router = require("express").Router();
+        router.get("/", (request: Request, response: Response) => {
+            this.findProfessor(request, response, () => {});
+        });
+        router.post("/", (request: Request, response: Response) => {
+            this.save(request, response, () => {});
+        });
+        router.put("/", (request: Request, response: Response) => {
+            this.update(request, response, () => {});
+        });
+        router.delete("/", (request: Request, response: Response) => {
+            this.delete(request, response, () => {});
+        });
+        
+        return router;
+    }
 }

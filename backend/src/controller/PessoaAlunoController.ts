@@ -83,5 +83,21 @@ export class PessoaAlunoController{
         }
     }
 
+    router(){
+        const router = require("express").Router();
+        router.get("/:matricula", (request: Request, response: Response) => {
+            this.findPessoaAluno(request, response, () => {});
+        });
+        router.post("/", (request: Request, response: Response) => {
+            this.save(request, response, () => {});
+        });
+        router.put("/", (request: Request, response: Response) => {
+            this.update(request, response, () => {});
+        });
+        router.delete("/", (request: Request, response: Response) => {
+            this.delete(request, response, () => {});
+        });
 
+        return router;
+    }
 }

@@ -53,8 +53,7 @@ export class AlunoController{
         }catch(err){
             return response.status(500).json({message: "Erro ao cadastrar aluno"});
         }
-    }
-    
+    } 
     async update(request: Request, response: Response, next: NextFunction){
         const {matricula} = request.body;
         
@@ -79,7 +78,6 @@ export class AlunoController{
         }
         
     }
-
     async delete(request: Request, response: Response, next: NextFunction){
         const {matricula} = request.body;
         
@@ -99,7 +97,6 @@ export class AlunoController{
         }
         
     }
-
     async findTurmasByAluno(request: Request, response: Response, next: NextFunction){
         const {matricula} = request.params;
         if(!matricula){
@@ -121,5 +118,25 @@ export class AlunoController{
         }
 
        
+    }
+
+    router(){
+        const router = require("express").Router();
+        router.get("/:matricula", (req: Request, res: Response) => {    
+            this.findAluno(req, res, () => {});
+        });
+        router.post("/", (req: Request, res: Response) => {
+            this.save(req, res, () => {});
+        });
+        router.put("/", (req: Request, res: Response) => {
+            this.update(req, res, () => {});
+        });
+        router.delete("/", (req: Request, res: Response) => {
+            this.delete(req, res, () => {});
+        });
+        router.get("/turmas/:matricula", (req: Request, res: Response) => {
+            this.findTurmasByAluno(req, res, () => {});
+        });
+        return router;
     }
 } 

@@ -238,4 +238,37 @@ export class TurmaController{
 
         return response.status(200).json({message: "Aulas encontradas", aulas: turma.aulas});
     }
+
+    router(){
+        const router = require('express').Router();
+        router.get("/:codigoTurma", (request: Request, response: Response) => {
+            this.findTurma(request, response, () => {});
+        });
+        router.get("/professor/:codigoProfessor", (request: Request, response: Response) => {
+            this.findTurmasByProfessor(request, response, () => {});
+        });
+        router.post("/", (request: Request, response: Response) => {
+            this.save(request, response, () => {});
+        });
+        router.put("/", (request: Request, response: Response) => {
+            this.update(request, response, () => {});
+        });
+        router.delete("/", (request: Request, response: Response) => {
+            this.delete(request, response, () => {});
+        });
+        router.post("/aluno", (request: Request, response: Response) => {
+            this.addAluno(request, response, () => {});
+        });
+        router.delete("/aluno", (request: Request, response: Response) => {
+            this.removeAluno(request, response, () => {});
+        });
+        router.get("/alunos/:codigoTurma", (request: Request, response: Response) => {
+            this.findAlunosByTurma(request, response, () => {});
+        });
+        router.get("/aulas/:codigoTurma", (request: Request, response: Response) => {
+            this.findAulasByTurma(request, response, () => {});
+        });
+
+        return router;
+    }
 }

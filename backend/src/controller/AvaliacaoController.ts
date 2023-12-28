@@ -1,6 +1,6 @@
 import { Avaliacao } from "../entity/Avaliacao";
 import { AppDataSource } from "../data-source";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { Aluno } from "../entity/Aluno";
 import { Aula } from "../entity/Aula";
 import { Turma } from "../entity/Turma";
@@ -179,5 +179,29 @@ export class AvaliacaoController{
         )
 
         return response.status(200).json({message: "Avaliacoes encontradas", filter_avaliacoes});
+    }
+    
+    router(){
+        const router = Router();
+        router.get("/:codigoAvaliacao", (req: Request, res: Response) => {
+            this.findAvaliacao(req, res, () => {});
+        });
+        router.post("/", (req: Request, res: Response) => {
+            this.save(req, res, () => {});
+        });
+        router.put("/", (req: Request, res: Response) => {
+            this.update(req, res, () => {});
+        });
+        router.delete("/", (req: Request, res: Response) => {
+            this.delete(req, res, () => {});
+        });
+        router.get("/aluno/:matricula", (req: Request, res: Response) => {
+            this.findAulasNotWithNoAvaliation(req, res, () => {});
+        });
+        router.get("/avaliacoes/:codigoAula", (req: Request, res: Response) => {
+            this.findAvaliacoesByAula(req, res, () => {});
+        });
+
+        return router;
     }
 }
