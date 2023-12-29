@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Image, Text, useColorScheme } from 'react-native';
 import TextInputComponent from '../../components/TextInputComponent';
 import ButtonConfirmComponent from '../../components/ButtonConfirmComponent';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -12,6 +12,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../rootStackParams';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type loginScreenProps = StackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -75,17 +76,15 @@ const Login = () => {
         }
     };
 
+    const colorScheme = useColorScheme();
+
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
 
             <View style={styles.grid_logo}>
-                <MaterialCommunityIcons 
-                    name="account-circle"
-                    size={100}
-                    color={"#5E4E90"}
-                />
-            <Text style={styles.title}>App Educação</Text>
-            <Text>Aqui a gente educa!</Text>
+                <Image source={require('../../../assets/logo.png')} style={styles.logo} />
+                <Text style={styles.title}>App Educação</Text>
+                <Text>Aqui a gente educa!</Text>
 
             </View>
 
@@ -149,7 +148,7 @@ const Login = () => {
             </View>
 
             <FlashMessage position="top" />
-        </View>
+        </SafeAreaView>
     );
 };
 

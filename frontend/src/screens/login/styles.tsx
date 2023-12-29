@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFE',
         alignItems: 'center', // horizontal
-        justifyContent: 'center', // vertical
         display: 'flex',
         flexGrow: 1,
+        borderWidth: 1,
     },
     title: {
         fontSize: 32,
@@ -15,10 +15,13 @@ const styles = StyleSheet.create({
         color: "#5E4E90",
     },
     grid_logo:{
+        top: 0,
         marginBottom: 20,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        borderColor: '#000000',
+        borderWidth: 1,
     },
     grid_placeholder: {
         display: 'flex',
@@ -76,6 +79,11 @@ const styles = StyleSheet.create({
         color: "#5E4E90",
         fontSize: 14,
         paddingLeft: 10,
+    },
+    logo:{
+        width: 200,
+        height: 200,
+        borderRadius: 999,
     }
 })
 
