@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import styles from "./styles";
 import {useState} from "react";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -11,6 +11,8 @@ import FlashMessage, { showMessage } from "react-native-flash-message";
 import { useAuth } from "../../context/AuthContext";
 import {Switch} from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 
 type SignUpScreenProps = StackNavigationProp<RootStackParamList, "SignIn">;
 
@@ -89,15 +91,13 @@ const SignUpScreen = (props:any) => {
     }
 
     return (
+        <GestureHandlerRootView>
+        <ScrollView>
         <View style={styles.container}>
             <View style={styles.grid_logo}>
-                <MaterialCommunityIcons 
-                    name="account-circle"
-                    size={100}
-                    color={"#5E4E90"}
-                />
-            <Text style={styles.title}>App Educação</Text>
-            <Text>Aqui a gente educa!</Text>
+                <Image source={require('../../../assets/logo.png')} style={styles.logo} />
+                <Text style={styles.title}>EvalMoJi</Text>
+                <Text style={styles.subtitle}>your evaluation matters</Text>
             </View>
 
             <View style={styles.grid_placeholder}>
@@ -198,6 +198,8 @@ const SignUpScreen = (props:any) => {
 
             <FlashMessage position="top" />
         </View>
+        </ScrollView>
+        </GestureHandlerRootView>
     );
 }
 

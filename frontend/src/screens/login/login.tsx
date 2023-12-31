@@ -83,8 +83,8 @@ const Login = () => {
 
             <View style={styles.grid_logo}>
                 <Image source={require('../../../assets/logo.png')} style={styles.logo} />
-                <Text style={styles.title}>App Educação</Text>
-                <Text>Aqui a gente educa!</Text>
+                <Text style={styles.title}>EvalMoJi</Text>
+                <Text style={styles.subtitle}>your evaluation matters</Text>
 
             </View>
 
@@ -126,6 +126,7 @@ const Login = () => {
                             thumbColor={isProfessor ? "#ffffff" : "#ffffff"}
                             onValueChange={toggleSwitch}
                             value={isProfessor}
+                            style={styles.switch_button}
                         />
                     </View>
                     

@@ -1,18 +1,24 @@
 import { StyleSheet } from 'react-native';
+import { backgroundColor, defaultColor } from '../../utils/consts';
+import { Dimensions } from 'react-native';
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFE',
-        alignItems: 'center', // horizontal
+        backgroundColor: backgroundColor,
+        alignItems: 'center',
         display: 'flex',
         flexGrow: 1,
-        borderWidth: 1,
     },
     title: {
         fontSize: 32,
         fontWeight: 'bold',
-        color: "#5E4E90",
+        color: defaultColor,
+    },
+    subtitle: {
+        fontSize: 16,
+        color: defaultColor,
     },
     grid_logo:{
         top: 0,
@@ -21,7 +27,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: '#000000',
-        borderWidth: 1,
     },
     grid_placeholder: {
         display: 'flex',
@@ -33,8 +38,9 @@ const styles = StyleSheet.create({
     placeholder: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: "#5E4E90",
+        color: defaultColor,
         paddingLeft:10,
+        marginBottom: 2 ,
     },
     grid_password:{
        flexDirection: 'row',
@@ -46,7 +52,8 @@ const styles = StyleSheet.create({
         gridTemplateColumns: '1fr',
         gridTemplateRows: '1fr 1fr 1fr',
         alignItems: 'flex-start',
-        gap: 12
+        gap: 12,
+        marginBottom: 20,
     },
     grid_forget:{
         display: 'flex',
@@ -55,9 +62,10 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     forget_password:{
-        color: "#5E4E90",
+        color: defaultColor,
         fontSize: 14,
         paddingLeft: 10,
+        marginBottom: 8,
     },
     line:{
         borderBottomColor: '#000000',
@@ -65,7 +73,7 @@ const styles = StyleSheet.create({
         width: 250,
     },
     icon:{
-        marginTop: 4,
+        bottom: 4,
         right: 4,
         position: 'absolute',
     },
@@ -75,8 +83,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    switch_button:{
+        marginLeft: 4
+    },
+
     professor_text:{
-        color: "#5E4E90",
+        color: defaultColor,
         fontSize: 14,
         paddingLeft: 10,
     },
