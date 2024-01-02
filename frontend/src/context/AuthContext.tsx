@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 import axios from "axios";
+import { baseUrl } from "../utils/consts";
 
 interface AuthContextType {
     authState?: {token: string | null, authenticated : boolean | null};
@@ -36,9 +37,9 @@ export const AuthProvider = ({ children }: any) => {
     const onRegister = async (code: number, password: string, nome: string,  type: string) => {
         try{
             if(type === "aluno"){
-                return await axios.post("http://10.0.2.2:3000/alunos", {matricula: code, senha: password, nomeAluno: nome});
+                return await axios.post(baseUrl + "/alunos", {matricula: code, senha: password, nomeAluno: nome});
             }else{
-                return await axios.post("http://10.0.2.2:3000/professores", {codigoProfessor: code, senha: password, nomeProfessor: nome});
+                return await axios.post(baseUrl + "/professores", {codigoProfessor: code, senha: password, nomeProfessor: nome});
             }
            
         }catch(error){
@@ -50,9 +51,9 @@ export const AuthProvider = ({ children }: any) => {
         try{
             let result;
             if(type === "aluno"){
-                result = await axios.post("http://10.0.2.2:3000/auth/login", {matricula: code, senha: password});
+                result = await axios.post(baseUrl + "/auth/login", {matricula: code, senha: password});
             }else{
-                result = await axios.post("http://10.0.2.2:3000/auth/loginProfessor", {codigoProfessor: code, senha: password});
+                result = await axios.post(baseUrl + "/auth/loginProfessor", {codigoProfessor: code, senha: password});
             }
            
             if(!result.data.token){
@@ -64,6 +65,8 @@ export const AuthProvider = ({ children }: any) => {
             axios.defaults.headers.common["Authorization"] = `Bearer ${result.data.token}`;
 
             await SecureStore.setItemAsync("jwt_token", result.data.token);
+            console.log(SecureStore.getItemAsync("jwt_token"));
+            
 
             return {error: false, message: "Login realizado com sucesso!"};
 

@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { backgroundColor, defaultColor } from '../../utils/consts';
-import { Dimensions } from 'react-native';
 
 
 const styles = StyleSheet.create({
@@ -91,6 +90,10 @@ const styles = StyleSheet.create({
         color: defaultColor,
         fontSize: 14,
         paddingLeft: 10,
+    },
+    professor_grid:{
+        flexDirection:"row",
+        alignItems:"center"
     },
     logo:{
         width: 200,

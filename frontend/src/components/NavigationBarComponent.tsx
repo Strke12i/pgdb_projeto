@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getIdentifier } from "../utils/getInformationsToken";
 import axios from "axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { baseUrl } from "../utils/consts";
 
 
 export const NavigationBarComponent = () => {
@@ -13,7 +14,7 @@ export const NavigationBarComponent = () => {
         const getImage = async () => {
             if(identifier != 0){
                 try{
-                    const response = await axios.get(`http://10.0.2.2:3000/alunosImagem/${identifier}`);
+                    const response = await axios.get(baseUrl + `/alunosImagem/${identifier}`);
                     if(response.status === 200){
                         setUserImage(true);
                     }
@@ -29,8 +30,8 @@ export const NavigationBarComponent = () => {
     return (
         <View style={styles.container}>
             <View style={styles.grid_logo}>
-                <Text style={styles.title}>App Educação</Text>
-                <Text style={styles.subtitle}>Aqui a gente educa!</Text>
+                <Text style={styles.title}>EvalMoji</Text>
+                <Text style={styles.subtitle}>Your evaluation matters</Text>
             </View>
             
             <View style={styles.grid_icons}>
@@ -38,7 +39,7 @@ export const NavigationBarComponent = () => {
                 <Image
                     source={
                         userImage ? 
-                        {uri: `http://10.0.2.2:3000/alunosImagem/${identifier}` } :
+                        {uri: baseUrl + `/alunosImagem/${identifier}` } :
                         require('../assets/imgs/default.png')
                     }
                     style={styles.image} />

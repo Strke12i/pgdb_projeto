@@ -119,7 +119,7 @@ const Login = () => {
                     </View>
                     <Text style={styles.forget_password} onPress={() => {}}>Esqueceu sua senha?</Text>
 
-                    <View style={{flexDirection:"row", alignItems:"center"}}>
+                    <View style={styles.professor_grid}>
                         <Text style={styles.professor_text}>Sou professor</Text>
                         <Switch 
                             trackColor={{ false: "#F4EBFF", true: "#5E4E90" }}

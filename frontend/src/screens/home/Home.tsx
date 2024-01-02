@@ -82,6 +82,7 @@ export const Home = () => {
 
     return (	
       <SafeAreaView style={styles.container}>
+		
         <NavigationBarComponent />
         <ModalComponent visible={modalAvaliacao} setVisible={setModalAvaliacao}>
             <Text style={styles.title}>Avaliação</Text>

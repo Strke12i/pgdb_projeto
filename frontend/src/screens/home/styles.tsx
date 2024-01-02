@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
     container:{
@@ -23,8 +24,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F4EBFF',
-        width:300,
-        height: 300,
+        width: Dimensions.get('window').width - 32,
+        height: Dimensions.get("window").height / 2 ,
+        top: 0,
+        marginTop: 16,
         borderColor: '#FFF',
         borderRadius: 20,
         borderWidth: 2,
@@ -103,7 +106,8 @@ export const styles = StyleSheet.create({
     grid_layout:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: 300,
+        width: Dimensions.get('window').width - 64,
+        marginBottom: 16
     },
 
     grid_layout_features:{
