@@ -35,7 +35,6 @@ export const Home = () => {
 
     const submitAvaliacao = async () => {
         try{
-			console.log("aaaa");
 			const response = await axios.post(`${baseUrl}/avaliacoes`, {
 				codigoAula,
 				matricula: identifier,
@@ -122,12 +121,13 @@ export const Home = () => {
             
         </ModalComponent> 
 
-				<View style={styles.grid_aulas}>
+		<View style={styles.grid_aulas}>
 				<Text style={styles.title}>Minhas Aulas</Text>
+				{
+					aulas.length != 0 ? (
 				<ScrollView style={styles.scrollview_aulas}>
 					<View style={styles.grid_information}>
-						{
-							aulas.map((aula: Aula) => {
+						{ aulas.map((aula: Aula) => {
 								return(
 									<View key={aula.codigoAula}>
 										<Text style={styles.text_disciplina}>{aula.conteudo}</Text>
@@ -163,9 +163,16 @@ export const Home = () => {
 								);
 							})
 						}
+					
 					</View>
 				</ScrollView>
-				</View>
+					) : (
+						<View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+							<Text style={{fontSize: 16, color: "#5E4E90"}}>Nenhuma aula disponível</Text>
+						</View>
+					)
+				}
+		</View>
 
 		<View style={styles.grid_layout}>
 			<View style={styles.grid_layout_features}>

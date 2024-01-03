@@ -1,17 +1,18 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
+import { defaultColor, backgroundColor } from "../../utils/consts";
 
 export const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#FFFFF4',
+        backgroundColor: backgroundColor,
         alignItems: 'center', // horizontal
         justifyContent: 'center', // vertical
         display: 'flex',
         flexGrow: 1,
     },
     scrollview_aulas:{
-        borderColor: '#FFFFF4',
+        borderColor: backgroundColor,
         borderWidth: 0.5,
         borderRadius: 20,
         width: "100%",
@@ -37,8 +38,9 @@ export const styles = StyleSheet.create({
     title:{
         textAlign: 'center',
         fontSize: 20,
-        color: '#5E4E90',
+        color: defaultColor,
         marginBottom: 8,
+        top: 8
     },
 
     grid_information:{
@@ -51,16 +53,16 @@ export const styles = StyleSheet.create({
 
     text_disciplina:{
         fontSize: 16,
-        color: '#5E4E90',
+        color: defaultColor,
         fontWeight: 'bold',
         textShadowColor: '#FFF',
         textDecorationLine: 'underline',
-        textDecorationColor: '#5E4E90',
+        textDecorationColor: defaultColor,
     },
 
     text_conteudo:{
         fontSize: 12,
-        color: '#5E4E90',
+        color: defaultColor,
     },
 
     grid_humor:{
@@ -82,7 +84,7 @@ export const styles = StyleSheet.create({
     humor_selected:{
         fontSize: 20,
         padding: 8,
-        backgroundColor: '#5E4E90',
+        backgroundColor: defaultColor,
         borderRadius: 999,
     },
 
@@ -118,6 +120,13 @@ export const styles = StyleSheet.create({
         width:140,
         borderRadius: 20,
         height: 120,
+    },
+
+    text_sem_aulas:{
+        textAlign: 'center',
+        borderWidth: 1,
+        fontSize: 20,
+        color: defaultColor,
     },
 
 });

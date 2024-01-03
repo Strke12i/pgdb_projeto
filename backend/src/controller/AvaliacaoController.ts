@@ -4,6 +4,7 @@ import { NextFunction, Request, Response, Router } from "express";
 import { Aluno } from "../entity/Aluno";
 import { Aula } from "../entity/Aula";
 import { Turma } from "../entity/Turma";
+import { log } from "console";
 
 export class AvaliacaoController{
     private avaliacaoRepository = AppDataSource.getRepository(Avaliacao);
@@ -116,7 +117,7 @@ export class AvaliacaoController{
         const turmas = await AppDataSource.getRepository(Turma).createQueryBuilder("turma")
         .leftJoinAndSelect("turma.alunos", "aluno").where("aluno.matricula = :matricula", {matricula: mat}).getMany();
 
-        if(!turmas){
+        if(!turmas || turmas.length == 0){
             return response.status(404).json({message: "Turmas não encontradas"});
         }
 
