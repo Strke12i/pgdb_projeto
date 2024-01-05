@@ -122,11 +122,17 @@ export const styles = StyleSheet.create({
         height: 120,
     },
 
+    grid_sem_aulas:{
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
     text_sem_aulas:{
         textAlign: 'center',
-        borderWidth: 1,
         fontSize: 20,
         color: defaultColor,
     },
+
 
 });

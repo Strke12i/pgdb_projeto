@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { styles } from "./styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {EditButton} from "../../components/EditButton";
@@ -10,17 +10,10 @@ import ButtonConfirmComponent from "../../components/ButtonConfirmComponent";
 import * as ImagePicker from 'expo-image-picker';
 import {showMessage} from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
-import { useAuth } from "../../context/AuthContext";
-import jwt_decode from "jwt-decode";
 import { getIdentifier } from "../../utils/getInformationsToken";
 import { DangerMessage, SuccessMessage } from "../../utils/Messages";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
-type DecodedJwt = {
-    matricula: number;
-    exp: number;
-    iat: number;
-    role: string;
-}
 
 const ProfileAluno = () => {
     const {identifier, role} = getIdentifier();
@@ -28,7 +21,7 @@ const ProfileAluno = () => {
     const [edit, setEdit] = useState(false);
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
-    const [dataNascimento, setDataNascimento] = useState(Date);
+    const [dataNascimento, setDataNascimento] = useState(new Date());
     const [genero, setGenero] = useState("");
     const [userImage, setUserImage] = useState(false);
     const [userExists, setUserExists] = useState(true);
@@ -207,14 +200,28 @@ const ProfileAluno = () => {
         method: "GET",
     } : require("../../assets/imgs/default.png");
 
+
+    const showDatePicker = () => {
+        DateTimePickerAndroid.open({
+            value: dataNascimento,
+            mode: "date",
+            onChange: (event, selectedDate) => {
+                if(selectedDate){
+                    setDataNascimento(selectedDate);
+                }
+            },
+            is24Hour: false,
+        });
+    }
+
     return (
         <View style={styles.container}>
             {
                 role === "aluno" ? (
                     <>
                         <View style={styles.logo}>
-                            <Text style={styles.logo_title}>App Educação</Text>
-                            <Text style={styles.logo_subtitle}>Aqui a gente educa</Text>
+                            <Text style={styles.logo_title}>EvalMoji</Text>
+                            <Text style={styles.logo_subtitle}>Your evaluation matters</Text>
                         </View>
 
                         <View>
@@ -275,10 +282,10 @@ const ProfileAluno = () => {
                                     {
                                     edit ? 
                                         <View style={{marginLeft:16}}>
-                                            <TextInputComponent placeholder="Data" maxLength={12} value={dataNascimento} onChangeText={setDataNascimento} keyboardType="number-pad"></TextInputComponent>
+                                            <ButtonConfirmComponent title="Selecionar Data" onClick={showDatePicker}/>
                                         </View> 
                                         :
-                                        <Text style={styles.form_text}>{dataNascimento}</Text> 
+                                        <Text style={styles.form_text}>{dataNascimento.toISOString()}</Text> 
                                     }
                                 </View>
                                 

@@ -72,7 +72,6 @@ export const Home = () => {
 				}
 
 			}catch(error){
-				DangerMessage("Erro ao carregar aulas!");
 			}	
 		}
 		getAulas();
@@ -122,9 +121,11 @@ export const Home = () => {
         </ModalComponent> 
 
 		<View style={styles.grid_aulas}>
-				<Text style={styles.title}>Minhas Aulas</Text>
+				
 				{
 					aulas.length != 0 ? (
+				<>
+				<Text style={styles.title}>Minhas Aulas</Text>
 				<ScrollView style={styles.scrollview_aulas}>
 					<View style={styles.grid_information}>
 						{ aulas.map((aula: Aula) => {
@@ -166,19 +167,20 @@ export const Home = () => {
 					
 					</View>
 				</ScrollView>
+				</>
 					) : (
-						<View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-							<Text style={{fontSize: 16, color: "#5E4E90"}}>Nenhuma aula disponível</Text>
+						<View style={styles.grid_sem_aulas}>
+							<Text style={styles.text_sem_aulas}>Nenhuma aula disponível</Text>
 						</View>
 					)
 				}
 		</View>
 
 		<View style={styles.grid_layout}>
-			<View style={styles.grid_layout_features}>
+			<Pressable style={styles.grid_layout_features} onPress={() => navigation.navigate("Turmas")}>
 				<Text style={styles.text_disciplina}>Minhas Turmas</Text>
-				<FontAwesome name="users" size={32} color="#5E4E90" onPress={() => navigation.navigate("Turmas")}/>
-			</View>
+				<FontAwesome name="users" size={32} color="#5E4E90"/>
+			</Pressable>
 
 			<View style={styles.grid_layout_features}>
 				<Text style={styles.text_conteudo}>Em Breve...</Text>

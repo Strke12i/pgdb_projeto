@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../rootStackParams';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { DangerMessage, SuccessMessage } from '../../utils/Messages';
 
 type loginScreenProps = StackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -39,12 +40,7 @@ const Login = () => {
     const handleLogin = async () => {
         
         if(matricula === "" || senha === ""){
-            showMessage({
-                message: "Erro",
-                description: "Preencha todos os campos!",
-                type: "danger",
-                icon: "danger",
-                });
+            DangerMessage("Preencha todos os campos!");
             return;
         }
 
@@ -56,23 +52,13 @@ const Login = () => {
                 throw new Error(result.message);
                 }
 
-                showMessage({
-                    message: "Sucesso",
-                    description: "Login realizado com sucesso!",
-                    type: "success",
-                    icon: "success",
-                })
+                SuccessMessage("Login realizado com sucesso!");
             } else {
                 console.log("onLogin não definido");
                 
             }
         } catch(error){
-            showMessage({
-                message: "Erro",
-                description: "Matrícula ou senha incorretos!",
-                type: "danger",
-                icon: "danger",
-            });
+            DangerMessage("Matrícula ou senha incorretos!");
         }
     };
 

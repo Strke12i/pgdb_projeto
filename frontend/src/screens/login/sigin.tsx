@@ -13,6 +13,7 @@ import {Switch} from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
+import { DangerMessage, SuccessMessage } from "../../utils/Messages";
 
 type SignUpScreenProps = StackNavigationProp<RootStackParamList, "SignIn">;
 
@@ -42,13 +43,7 @@ const SignUpScreen = (props:any) => {
 
     const handleSignUp = async () => {
         if(nome === "" || matricula === "" || senha === "" || confirmPassword === ""){
-            showMessage({
-                message: "Erro",
-                description: "Preencha todos os campos!",
-                type: "danger",
-                icon: "danger",
-                });
-                return;
+            DangerMessage("Preencha todos os campos!");
         }
 
         try{
@@ -67,26 +62,14 @@ const SignUpScreen = (props:any) => {
                     throw new Error(result.message);
                 }
 
-                showMessage({
-                    message: "Sucesso",
-                    description: "Usuário cadastrado com sucesso!",
-                    type: "success",
-                    icon: "success",
-                })
-
+                SuccessMessage("Usuário cadastrado com sucesso!");
                 navigation.navigate("Login");
 
             }else{
                 throw new Error("Função não encontrada");
             }
         }catch(error){
-            showMessage({
-                message: "Erro",
-                description: (error as Error).message,
-                type: "danger",
-                icon: "danger",
-                });
-                return;
+            DangerMessage((error as Error).message);
         }
     }
 
