@@ -13,6 +13,8 @@ import FlashMessage from "react-native-flash-message";
 import { getIdentifier } from "../../utils/getInformationsToken";
 import { DangerMessage, SuccessMessage } from "../../utils/Messages";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import { baseUrl } from "../../utils/consts";
+import { Picker } from "@react-native-picker/picker";
 
 
 const ProfileAluno = () => {
@@ -196,7 +198,7 @@ const ProfileAluno = () => {
     }
 
     const UserImage = userImage ? {
-        uri : "http://10.0.2.2:3000/alunosImagem/"+matricula.toString(),
+        uri : baseUrl+"/alunosImagem/"+matricula.toString(),
         method: "GET",
     } : require("../../assets/imgs/default.png");
 
@@ -282,10 +284,12 @@ const ProfileAluno = () => {
                                     {
                                     edit ? 
                                         <View style={{marginLeft:16}}>
-                                            <ButtonConfirmComponent title="Selecionar Data" onClick={showDatePicker}/>
+                                            <Pressable onPress={showDatePicker}>
+                                                <Text style={styles.text_date}>{dataNascimento.toISOString().split("T")[0]}</Text>
+                                            </Pressable>
                                         </View> 
                                         :
-                                        <Text style={styles.form_text}>{dataNascimento.toISOString()}</Text> 
+                                        <Text style={styles.form_text}>{dataNascimento.toISOString().split("T")[0]}</Text> 
                                     }
                                 </View>
                                 
@@ -299,8 +303,18 @@ const ProfileAluno = () => {
                                     {
                                     edit ? 
                                         <View style={{marginLeft:16}}>
-                                            <TextInputComponent placeholder="Genero" maxLength={12} value={genero} onChangeText={setGenero}></TextInputComponent>
-                                        </View> 
+                                        <Picker
+                                            selectedValue={genero}
+                                            onValueChange={(itemValue, itemIndex) =>
+                                                setGenero(itemValue)
+                                            }
+                                            >
+                                            <Picker.Item label="Masculino" value="Masculino" />
+                                            <Picker.Item label="Feminino" value="Feminino" />
+                                            <Picker.Item label="Outro" value="Outro" />
+                                        </Picker>
+                                        
+                                                 </View> 
                                         :
                                         <Text style={styles.form_text}>{genero}</Text> 
                                     }

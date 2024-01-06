@@ -85,6 +85,15 @@ export const styles = StyleSheet.create({
         marginTop: -15,
     },
 
+    text_date:{
+        marginTop: 2,   
+        fontSize: 16,
+        fontWeight:"bold",
+        fontFamily: 'Roboto',
+        color: '#5E4E90',
+    },
+
+
 
 
 })  
