@@ -1,9 +1,10 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+import { backgroundColor, defaultColor, secondaryColor } from "../../utils/consts";
 
 export const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#FFFFF9',
+        backgroundColor: backgroundColor,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -14,7 +15,7 @@ export const styles = StyleSheet.create({
     },
     logo_title:{
         fontSize: 30,
-        color: '#5E4E90',
+        color: defaultColor,
         fontWeight: 'bold',
         marginTop: 20,
         textAlign: 'center',
@@ -25,11 +26,11 @@ export const styles = StyleSheet.create({
     },
 
     user_img:{
-        width:100,
-        height:100,
+        width: Dimensions.get('window').height/ 6,
+        height: Dimensions.get('window').height/ 6,
         borderRadius: 999,
-        borderWidth:1,
-        borderColor:"#5E4E90",
+        borderWidth: 1,
+        borderColor: defaultColor,
         marginTop: 16,
     },
     user_edit_button:{
@@ -42,26 +43,26 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         display: 'flex',
         padding: 16,
-        width:300,
+        width: Dimensions.get('window').width - 64,
         borderWidth:2,
         borderRadius: 20,
         borderColor:"#FFFFFF",
         alignContent: 'flex-start',
         justifyContent: 'flex-start',
-        backgroundColor:'#F4EBFF',    
+        backgroundColor: secondaryColor,    
     },
 
     form_description:{
         textAlign: "left",
         fontSize: 14,
-        color: '#5E4E90',
+        color: defaultColor,
         marginBottom: 8,
     },
 
     form_label:{
         marginTop: 2,   
         fontSize: 14,
-        color: '#5E4E90',
+        color: defaultColor,
         fontWeight: 'bold',
     },
 
@@ -75,7 +76,7 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         marginLeft: 16,
         fontFamily: 'Roboto',
-        color: '#5E4E90',
+        color: defaultColor,
     }
     ,
     form_edit_button:{
@@ -90,18 +91,24 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight:"bold",
         fontFamily: 'Roboto',
-        color: '#5E4E90',
+        color: defaultColor,
     },
 
     picker:{
         fontWeight:"bold",
         fontFamily: 'Roboto',
-        color: '#5E4E90',
+        color: defaultColor,
         borderWidth: 1,
         borderColor: '#000',
         marginTop: -16
-    }
+    },
 
+    button_confirm:{
+        marginTop: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    
 
 
 })  

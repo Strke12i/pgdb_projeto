@@ -27,6 +27,7 @@ const ProfileAluno = () => {
     const [genero, setGenero] = useState("");
     const [userImage, setUserImage] = useState(false);
     const [userExists, setUserExists] = useState(true);
+    const [editImage, setEditImage] = useState(false);
 
     const matricula = identifier;
 
@@ -77,22 +78,11 @@ const ProfileAluno = () => {
                 });
                 }
                 
-                
-                
-            showMessage({
-                message:"Imagem alterada com sucesso!",
-                type:"success",
-                floating: true,
-            });
-
-            
+            SuccessMessage("Imagem alterada com sucesso!");
+            setEditImage(true);
 
             }catch(error){
-                showMessage({
-                    message:"Erro ao alterar imagem!",
-                    type:"danger",
-                    floating: true,
-                });
+                DangerMessage("Erro ao alterar imagem!");
             }
         }   
     }
@@ -100,7 +90,7 @@ const ProfileAluno = () => {
     useEffect(() => {
         const fetchAluno = async () => {
             try{
-                const response = await axios.get("http://10.0.2.2:3000/pessoaAluno/"+matricula.toString(), );
+                const response = await axios.get(baseUrl + "/pessoaAluno/"+matricula.toString(), );
 
                 setNome(response.data.nomeAluno);
                 setEmail(response.data.email);
@@ -108,17 +98,15 @@ const ProfileAluno = () => {
                 setGenero(response.data.genero);
 
             } catch (error) {
-                showMessage({
-                    message:"Erro ao buscar dados do aluno!",
-                    type:"danger",
-                    floating: true,
-                });
+                const response = await axios.get(baseUrl + "/alunos/"+matricula.toString());
+                setNome(response.data.aluno.nomeAluno);
+                DangerMessage("Informações não atualizadas!");
             }
         }
 
         const getImage = async () => {
             try{
-                const response = await axios.get("http://10.0.2.2:3000/alunosImagem/"+matricula.toString(), {
+                const response = await axios.get( baseUrl + "/alunosImagem/"+matricula.toString(), {
                     headers:{
                         "Content-Type": "application/json",
                     },
@@ -136,8 +124,10 @@ const ProfileAluno = () => {
 
         getImage();
         fetchAluno();
+        setEditImage(false);
+                
 
-        }, []);
+        }, [editImage]);
     
     const handleEdit = () => {
         setEdit(!edit);
@@ -325,7 +315,7 @@ const ProfileAluno = () => {
 
                                 {
                                     edit ?
-                                    <View style={{marginTop: 16}}>
+                                    <View style={styles.button_confirm}>
                                         <ButtonConfirmComponent title="Salvar" onClick={() => {
                                             handleSubmit();
                                             
