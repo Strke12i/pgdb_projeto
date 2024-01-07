@@ -302,16 +302,19 @@ const ProfileAluno = () => {
                                 <View>
                                     {
                                     edit ? 
-                                        <View style={{marginLeft:16}}>
+                                        <View>
                                         <Picker
                                             selectedValue={genero}
+                                            style={styles.picker}
+                                            mode="dropdown"
+                                            dropdownIconColor={"#5E4E90"}
                                             onValueChange={(itemValue, itemIndex) =>
                                                 setGenero(itemValue)
                                             }
                                             >
-                                            <Picker.Item label="Masculino" value="Masculino" />
-                                            <Picker.Item label="Feminino" value="Feminino" />
-                                            <Picker.Item label="Outro" value="Outro" />
+                                            <Picker.Item label="Masculino" value="Masculino" style={styles.form_text}/>
+                                            <Picker.Item label="Feminino" value="Feminino" style={styles.form_text}/>
+                                            <Picker.Item label="Outro" value="Outro" style={styles.form_text} />
                                         </Picker>
                                         
                                                  </View> 

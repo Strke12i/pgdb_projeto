@@ -93,6 +93,14 @@ export const styles = StyleSheet.create({
         color: '#5E4E90',
     },
 
+    picker:{
+        fontWeight:"bold",
+        fontFamily: 'Roboto',
+        color: '#5E4E90',
+        borderWidth: 1,
+        borderColor: '#000',
+        marginTop: -16
+    }
 
 
 
